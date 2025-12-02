@@ -15,7 +15,7 @@ NC='\033[0m' # No Color (reset)
 # tmtr stop
 # tmtr restart
 # tmtr pause
-# tmtr continue
+# tmtr resume
 # tmtr status
 
 get_elapsed_seconds() {
@@ -77,13 +77,13 @@ if [ "$1" = "pause" ]; then
   exit 0
 fi
 
-if [[ "$1" = "continue" ]]; then
+if [[ "$1" = "resume" ]]; then
   if [[ -n "${TIME_TRACK_PAUSED+x}" ]]; then
     echo "export TIME_TRACK_START=$(date "+%s")" >> "$ENV_FILE"
-    echo "${GREEN}Timetrack has continued tracking:${CYAN} $(format_time_from_seconds $(get_elapsed_seconds)) ${NC}"
+    echo "${GREEN}Timetrack has resumed tracking:${CYAN} $(format_time_from_seconds $(get_elapsed_seconds)) ${NC}"
     exit 0
   else
-    echo "${RED}Error: Cannot continue when no tracking has been paused.${NC}"
+    echo "${RED}Error: Cannot resume when no tracking has been paused.${NC}"
     exit 1
   fi
 fi
