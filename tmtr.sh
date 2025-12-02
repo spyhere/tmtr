@@ -20,8 +20,9 @@ NC='\033[0m' # No Color (reset)
 
 get_elapsed_seconds() {
   local paused_time=${TIME_TRACK_PAUSED:-0}
+  local start_sec=${TIME_TRACK_START:-$(date "+%s")}
   local curr_sec=$(date "+%s")
-  echo $((curr_sec - $TIME_TRACK_START + paused_time))
+  echo $((curr_sec - start_sec + paused_time))
 }
 
 format_time_from_seconds() {
