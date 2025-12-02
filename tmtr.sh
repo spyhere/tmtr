@@ -45,7 +45,7 @@ if [[ "$#" -eq 0 ]]; then
     echo "${RED}Error: Timetrack is already tracking! Use 'restart' to restart it.${CYAN} $(format_time_from_seconds $(get_elapsed_seconds))${NC}"
     exit 1
   fi
- echo "export TIME_TRACK_START=$(date "+%s")" > "$ENV_FILE"
+  echo "export TIME_TRACK_START=$(date "+%s")" > "$ENV_FILE"
   echo "${GREEN}Timetrack started tracking${NC}"
   exit 0
 fi
