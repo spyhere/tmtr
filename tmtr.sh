@@ -61,7 +61,6 @@ fi
 
 if [ "$1" = "restart" ]; then
   echo "export TIME_TRACK_START=$(date "+%s")" > "$ENV_FILE"
-  unset TIME_TRACK_PAUSED
   echo "${GREEN}Timetrack is beeing restarted.${NC}"
   exit 0
 fi
