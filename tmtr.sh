@@ -54,13 +54,8 @@ if [[ "$1" = "stop" ]]; then
     echo "${RED}Error: cannot stop when no tracking has been started.${NC}"
     exit 1
   fi
-  elapsed_sec=0
-  if [[ -n "${TIME_TRACK_START+x}" ]]; then
-    elapsed_sec=$(get_elapsed_seconds)
-  fi
-  elapsed_sec=$((${TIME_TRACK_PAUSED:-0} + $elapsed_sec))
+  echo "${GREEN}Timetrack stopped: ${CYAN}$(format_time_from_seconds $(get_elapsed_seconds))${NC}"
   echo "" > "$ENV_FILE"
-  echo "${GREEN}Timetrack stopped: ${CYAN}$(format_time_from_seconds $elapsed_sec)${NC}"
   exit 0
 fi
 
