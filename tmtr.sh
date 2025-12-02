@@ -34,6 +34,7 @@ format_time_from_seconds() {
   else
     hours=$(( minutes / 60 ))
     minutes=$(( minutes % 60 ))
+    seconds=$(( seconds % 60 ))
     echo "${hours}h ${minutes}m ${seconds}s"
   fi
 }
