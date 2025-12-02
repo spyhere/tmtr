@@ -40,8 +40,7 @@ format_time_from_seconds() {
 }
 
 if [[ "$#" -eq 0 ]]; then
-  if [[ -n "${TIME_TRACK_START+x}" ]]; then
-    echo "${RED}Error: Timetrack is already tracking! Use 'restart' to restart it.${NC}"
+  if [[ -n "${TIME_TRACK_START+x}" || -n "${TIME_TRACK_PAUSED+x}" ]]; then
     exit 1
   fi
  echo "export TIME_TRACK_START=$(date "+%s")" > "$ENV_FILE"
