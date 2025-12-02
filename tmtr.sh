@@ -101,10 +101,10 @@ if [[ "$1" = "status" ]]; then
   elif [[ -n "${TIME_TRACK_PAUSED+x}" ]]; then
     echo "${YELLOW}Timetrack is paused:${CYAN} $(format_time_from_seconds $TIME_TRACK_PAUSED)${NC}"
   else
-    echo "Timetrack is not tracking."
+    echo "${YELLOW}Timetrack is not tracking.${NC}"
   fi
   exit 0
 fi
 
-echo "${RED} unknown command $1"
+echo "${RED} unknown command $1${NC}"
 
