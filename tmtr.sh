@@ -52,7 +52,7 @@ fi
 
 if [[ "$1" = "stop" ]]; then
   if [[ -z "${TIME_TRACK_START+x}" && -z "${TIME_TRACK_PAUSED+x}" ]]; then
-    echo "${RED}Error: cannot stop when no tracking has been started.${NC}"
+    echo "${RED}Error: Cannot stop when no tracking has been started.${NC}"
     exit 1
   fi
   echo "${GREEN}Timetrack stopped: ${CYAN}$(format_time_from_seconds $(get_elapsed_seconds))${NC}"
@@ -68,7 +68,7 @@ fi
 
 if [ "$1" = "pause" ]; then
   if [[ -z "${TIME_TRACK_START+x}" ]]; then
-    echo "${RED}Error: cannot pause when no tracking has been started or it's already paused!${NC}"
+    echo "${RED}Error: Cannot pause when no tracking has been started or it's already paused!${NC}"
     exit 1
   fi
   elapsed_sec=$(get_elapsed_seconds)
