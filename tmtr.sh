@@ -71,9 +71,7 @@ if [ "$1" = "pause" ]; then
     echo "${RED}Error: cannot pause when no tracking has been started or it's already paused!${NC}"
     exit 1
   fi
-  curr_sec=$(date "+%s")
-  paused_sec=${TIME_TRACK_PAUSED:-0}
-  elapsed_sec=$((curr_sec - $TIME_TRACK_START + paused_sec))
+  elapsed_sec=$(get_elapsed_seconds)
   echo "export TIME_TRACK_PAUSED=$elapsed_sec" > "$ENV_FILE"
   echo "${GREEN}Timetrack is beeing paused:${CYAN} $(format_time_from_seconds $elapsed_sec)${NC}"
   exit 0
