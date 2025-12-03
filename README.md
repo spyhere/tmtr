@@ -29,5 +29,5 @@ It will create a wrapper script inside `~/.local/bin/` that will point to `tmtr.
 
 1. Run `./uninstall.sh`
 
-Remove wrapper at `~/.local/bin/tmtr` and this repo from your machine. After deletion you will be in non-existent directory, so use ``
+Remove wrapper at `~/.local/bin/tmtr` and this repo from your machine. After deletion you will be in non-existent directory, so use `cd ~` to get back to home.
 
