@@ -32,7 +32,7 @@ tmtr l
 1. Clone the repo
 2. Inside the repo run `./install.sh`
 
-It will create a wrapper script inside `~/.local/bin/` that will point to `tmtr.sh` inside the repo.
+It will create a wrapper script inside `~/.local/bin/` that will point to `src/main.sh` inside the repo.
 
 ### Uninstallation
 
