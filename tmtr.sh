@@ -20,22 +20,22 @@ if [[ "$#" -eq 0 ]]; then
 fi
 
 case "$1" in
-  stop)
+  stop|st)
     stop_command
     ;;
-  restart)
+  restart|rst)
     restart_command
     ;;
-  pause)
+  pause|p)
     pause_command
     ;;
-  resume)
+  resume|r)
     resume_command
     ;;
-  status)
+  status|stat)
     status_command
     ;;
-  log)
+  log|l)
     log_command
     ;;
   *)
