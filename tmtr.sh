@@ -1,5 +1,6 @@
 #!/bin/bash
 
+ENV_FILE="$ENV/.env"
 source "$ENV_FILE"
 
 RED='\033[0;31m'

@@ -9,9 +9,8 @@ WRAPPER_LINKED="$HOME/.local/bin/tmtr"
 
 cat > $WRAPPER_LINKED << EOF
 #!/bin/sh
-ENV_FILE="$REPO_DIR/.env"
-export ENV_FILE
-source "\$ENV_FILE"
+ENV="$REPO_DIR"
+export ENV
 bash "$ORIGINAL_SCRIPT" "\$@"
 EOF
 
