@@ -1,6 +1,5 @@
 #!/bin/bash
 
-ENV_FILE="$HOME/Projects/tmtr/tmtr.env"
 source "$ENV_FILE"
 
 RED='\033[0;31m'
