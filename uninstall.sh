@@ -13,7 +13,7 @@ if [[ $ANSWER == "y" || $ANSWER == "Y" ]]; then
   cd "$REPO_DIR/.."
   rm -rf "$REPO_DIR"
 
-  if [[ -L "$WRAPPER_LINK" ]]; then
+  if [[ -f "$WRAPPER_LINK" ]]; then
     rm "$WRAPPER_LINK"
     echo "Removed wrapper $WRAPPER_LINK"
   else
