@@ -4,7 +4,7 @@ set -e
 touch .env
 
 REPO_DIR=$(cd $(dirname "${BASH_SOURCE[0]}") && pwd)
-ORIGINAL_SCRIPT="$REPO_DIR/tmtr.sh"
+ORIGINAL_SCRIPT="$REPO_DIR/src/main.sh"
 WRAPPER_LINKED="$HOME/.local/bin/tmtr"
 
 cat > $WRAPPER_LINKED << EOF
@@ -16,6 +16,6 @@ EOF
 
 chmod +x "$WRAPPER_LINKED"
 
-echo "Successfuly created symlink for tmtr at $WRAPPER_LINKED"
+echo "Successfuly created wrapper for tmtr at $WRAPPER_LINKED"
 echo "It points to $ORIGINAL_SCRIPT"
 

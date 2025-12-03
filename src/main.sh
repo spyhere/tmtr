@@ -1,7 +1,7 @@
 #!/bin/bash
 
-source "$ENV/utils.sh"
-source "$ENV/commands.sh"
+source "$ENV/src/utils.sh"
+source "$ENV/src/commands.sh"
 
 ENV_FILE="$ENV/.env"
 source "$ENV_FILE"
@@ -12,7 +12,6 @@ YELLOW='\033[0;33m'
 CYAN='\033[0;36m'
 NC='\033[0m' # No Color (reset)
 
-# Time track utility
 # TODO: Make it support labels (Ex.: tmtr ls, tmtr ir990 start)
 
 if [[ "$#" -eq 0 ]]; then

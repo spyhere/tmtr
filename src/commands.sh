@@ -4,7 +4,7 @@ init_command() {
     exit 1
   fi
   echo "export TIME_TRACK_START=$(date "+%s")" > "$ENV_FILE"
-  echo -e "${GREEN}Timetrack started tracking${NC}"
+  echo -e "${GREEN}Timetrack started${NC}"
   exit 0
 }
 
