@@ -1,7 +1,7 @@
 #!/bin/sh
 
 set -e
-read -n 1 -r -p "Are you sure you want to uninstall tmtr? y/n" ANSWER
+read -n 1 -r -p "Are you sure you want to uninstall tmtr? y/n " ANSWER
 echo
 
 if [[ $ANSWER == "y" || $ANSWER == "Y" ]]; then
@@ -20,9 +20,8 @@ if [[ $ANSWER == "y" || $ANSWER == "Y" ]]; then
     echo "No wrapper has been found"
   fi
 
-  cd "$HOME"
   echo "tmtr has been uninstalled from your machine"
-  echo "You have been moved to home directory"
+  echo "You are now in the non-existent directory. Use cd ~ to get to home"
 else
   echo "Aborting."
 fi
