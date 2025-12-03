@@ -16,6 +16,9 @@ tmtr pause
 tmtr resume
 
 tmtr status
+
+tmtr log
+# Log tracked time (if there is any) without any additional information
 ```
 
 ### Installation

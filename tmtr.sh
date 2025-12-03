@@ -17,6 +17,7 @@ NC='\033[0m' # No Color (reset)
 # tmtr pause
 # tmtr resume
 # tmtr status
+# tmtr log
 
 get_elapsed_seconds() {
   local paused_time=${TIME_TRACK_PAUSED:-0}
@@ -97,6 +98,13 @@ if [[ "$1" = "status" ]]; then
     echo -e "${YELLOW}Timetrack is not tracking.${NC}"
   fi
   exit 0
+fi
+
+if [[ "$1" == "log" ]]; then
+  if [[ -n "${TIME_TRACK_START+x}" || -n "${TIME_TRACK_PAUSED+x}" ]]; then
+    echo "$(format_time_from_seconds $(get_elapsed_seconds))"
+  fi
+  exit 0;
 fi
 
 echo -e "${RED} unknown command $1${NC}"
