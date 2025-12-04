@@ -19,7 +19,7 @@ if [[ "$#" -eq 0 ]]; then
 fi
 
 case "$1" in
-  stop|st)
+  stop|s)
     stop_command
     ;;
   restart|rst)

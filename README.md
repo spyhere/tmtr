@@ -7,8 +7,9 @@
 ```bash
 tmtr
 # Run without arguments to start tracking. Will show error with current tracked time if it's already tracking
+
 tmtr stop
-tmtr st
+tmtr s
 
 tmtr restart
 tmtr rst
