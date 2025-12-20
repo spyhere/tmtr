@@ -32,8 +32,12 @@ tmtr l
 
 1. Clone the repo
 2. Inside the repo run `./install.sh`
+3. Select "y" or anything else when asked about colors in output.
 
+At any time you can run `./install.sh` again and choose to have colors or get rid of them, it won't remove currently tracked time.
 It will create a wrapper script inside `~/.local/bin/` that will point to `src/main.sh` inside the repo.
+
+If you are using this inside vim then having colors is not the best option, since you will see ASCII codes for colors instead of colors itself.
 
 ### Uninstallation
 
