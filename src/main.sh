@@ -11,7 +11,7 @@ GREEN=''
 YELLOW=''
 CYAN=''
 NC=''
-if [[ $COLOURS == true ]]; then
+if [[ $COLORS == true ]]; then
   RED='\033[0;31m'
   GREEN='\033[0;32m'
   YELLOW='\033[0;33m'

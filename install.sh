@@ -3,12 +3,12 @@
 set -e
 touch .env
 
-read -n 1 -r -p "Do you want colours in outputs? y/n" ANSWER
+read -n 1 -r -p "Do you want colors in outputs? y/n" ANSWER
 echo
 
-COLOURS=false
+COLORS=false
 if [[ $ANSWER == "y" || $ANSWER == "Y" ]]; then
-  COLOURS=true
+  COLORS=true
 fi
 
 REPO_DIR=$(cd $(dirname "${BASH_SOURCE[0]}") && pwd)
@@ -19,8 +19,8 @@ cat > $WRAPPER_LINKED << EOF
 #!/bin/sh
 ENV="$REPO_DIR"
 export ENV
-COLOURS="$COLOURS"
-export COLOURS
+COLORS="$COLORS"
+export COLORS
 bash "$ORIGINAL_SCRIPT" "\$@"
 EOF
 
