@@ -6,11 +6,18 @@ source "$ENV/src/commands.sh"
 ENV_FILE="$ENV/.env"
 source "$ENV_FILE"
 
-RED='\033[0;31m'
-GREEN='\033[0;32m'
-YELLOW='\033[0;33m'
-CYAN='\033[0;36m'
-NC='\033[0m' # No Color (reset)
+RED=''
+GREEN=''
+YELLOW=''
+CYAN=''
+NC=''
+if [[ $COLOURS == true ]]; then
+  RED='\033[0;31m'
+  GREEN='\033[0;32m'
+  YELLOW='\033[0;33m'
+  CYAN='\033[0;36m'
+  NC='\033[0m' # No Color (reset)
+fi
 
 # TODO: Make it support labels (Ex.: tmtr ls, tmtr ir990 start)
 
