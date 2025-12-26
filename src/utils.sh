@@ -1,8 +1,7 @@
 get_elapsed_seconds() {
-  local paused_time=${TIME_TRACK_PAUSED:-0}
-  local start_sec=${TIME_TRACK_START:-$(date "+%s")}
-  local curr_sec=$(date "+%s")
-  echo $((curr_sec - start_sec + paused_time))
+  local paused_time=${TIME_TRACK_PAUSED:-$(date "+%s")}
+  local start_time=$TIME_TRACK_START
+  echo $((paused_time - start_time))
 }
 
 format_time_from_seconds() {

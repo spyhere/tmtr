@@ -1,43 +1,47 @@
+NOW=$(date "+%s")
+
 init_command() {
-  if [[ -n "${TIME_TRACK_START+x}" || -n "${TIME_TRACK_PAUSED+x}" ]]; then
+  if [[ "${TIME_TRACK_START:-0}" -gt 0 ]]; then
     echo -e "${RED}Error: Timetrack is already tracking! Use 'restart' to restart it.${CYAN} $(format_time_from_seconds $(get_elapsed_seconds))${NC}"
     exit 1
   fi
-  echo "export TIME_TRACK_START=$(date "+%s")" > "$ENV_FILE"
+  update_value "TIME_TRACK_START" $NOW
   echo -e "${GREEN}Timetrack started${NC}"
   exit 0
 }
 
 stop_command() {
-  if [[ -z "${TIME_TRACK_START+x}" && -z "${TIME_TRACK_PAUSED+x}" ]]; then
+  if [[ "${TIME_TRACK_START:-0}" -eq 0 ]]; then
     echo -e "${RED}Error: Cannot stop when no tracking has been started.${NC}"
     exit 1
   fi
   echo -e "${RED}⏹${CYAN} $(format_time_from_seconds $(get_elapsed_seconds))${NC}"
-  echo "" > "$ENV_FILE"
+  update_value "TIME_TRACK_START" ""
+  update_value "TIME_TRACK_PAUSED" ""
   exit 0
 }
 
 restart_command() {
-  echo "export TIME_TRACK_START=$(date "+%s")" > "$ENV_FILE"
+  update_value "TIME_TRACK_START" $NOW
+  update_value "TIME_TRACK_PAUSED" ""
   echo -e "${GREEN}↺${NC}"
   exit 0
 }
 
 pause_command() {
-  if [[ -z "${TIME_TRACK_START+x}" ]]; then
+  if [[ "${TIME_TRACK_START:-0}" -eq 0 || "${TIME_TRACK_PAUSED:-0}" -gt 0 ]]; then
     echo -e "${RED}Error: Cannot pause when no tracking has been started or it's already paused!${NC}"
     exit 1
   fi
-  elapsed_sec=$(get_elapsed_seconds)
-  echo "export TIME_TRACK_PAUSED=$elapsed_sec" > "$ENV_FILE"
-  echo -e "${YELLOW}⏸${CYAN} $(format_time_from_seconds $elapsed_sec)${NC}"
+  update_value "TIME_TRACK_PAUSED" $NOW
+  echo -e "${YELLOW}⏸${CYAN} $(format_time_from_seconds $(get_elapsed_seconds))${NC}"
   exit 0
 }
 
 resume_command() {
-  if [[ -n "${TIME_TRACK_PAUSED+x}" ]]; then
-    echo "export TIME_TRACK_START=$(date "+%s")" >> "$ENV_FILE"
+  if [[ "${TIME_TRACK_PAUSED:-0}" -gt 0 ]]; then
+    update_value "TIME_TRACK_START" $((TIME_TRACK_START + NOW - TIME_TRACK_PAUSED))
+    update_value "TIME_TRACK_PAUSED" ""
     echo -e "${GREEN}▶${CYAN} $(format_time_from_seconds $(get_elapsed_seconds)) ${NC}"
     exit 0
   else
@@ -47,10 +51,10 @@ resume_command() {
 }
 
 status_command() {
-  if [[ -n "${TIME_TRACK_START+x}" ]]; then
+  if [[ "${TIME_TRACK_PAUSED:-0}" -gt 0 ]]; then
+    echo -e "${YELLOW}⏸${CYAN} $(format_time_from_seconds $(get_elapsed_seconds))${NC}"
+  elif [[ "${TIME_TRACK_START:-0}" -gt 0 ]]; then
     echo -e "${GREEN}▶${CYAN} $(format_time_from_seconds $(get_elapsed_seconds))${NC}"
-  elif [[ -n "${TIME_TRACK_PAUSED+x}" ]]; then
-    echo -e "${YELLOW}⏸${CYAN} $(format_time_from_seconds $TIME_TRACK_PAUSED)${NC}"
   else
     echo -e "${RED}Not tracking${NC}"
   fi
@@ -58,7 +62,7 @@ status_command() {
 }
 
 log_command() {
-  if [[ -n "${TIME_TRACK_START+x}" || -n "${TIME_TRACK_PAUSED+x}" ]]; then
+  if [[ "${TIME_TRACK_START:-0}" -gt 0 ]]; then
     echo "$(format_time_from_seconds $(get_elapsed_seconds))"
   fi
   exit 0;
