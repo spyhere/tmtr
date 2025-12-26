@@ -20,3 +20,14 @@ format_time_from_seconds() {
   fi
 }
 
+update_value() {
+  local key=$1
+  local value=$2
+  if grep -q "^$key=" "$ENV_FILE"; then
+      perl -pi -e "s/^$key=.*/$key=$value/" "$ENV_FILE"
+  else
+      echo "$key=$value" >> "$ENV_FILE"
+  fi
+
+}
+
