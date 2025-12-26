@@ -42,5 +42,11 @@ label_exist() {
   fi
   return 1;
 }
+
+list_labels() {
+  while IFS= read -r label; do
+    echo "${label} $(status_command $label)"
+  done < <(perl -ne 'print "$1\n" if /(^[a-zA-Z]+)=/' "$ENV_FILE")
+  return 0
 }
 

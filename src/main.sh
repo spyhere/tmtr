@@ -41,6 +41,9 @@ parse_command() {
     log|l)
       log_command $label
       ;;
+    ls)
+      list_labels
+      ;;
     *)
       return 1
       ;;
