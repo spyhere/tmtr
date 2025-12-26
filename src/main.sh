@@ -44,6 +44,12 @@ parse_command() {
     ls)
       list_labels
       ;;
+    rm)
+      remove_label $label
+      ;;
+    rma)
+      remove_all_labels
+      ;;
     *)
       return 1
       ;;

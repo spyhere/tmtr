@@ -80,5 +80,17 @@ log_command() {
     echo "$(format_time_from_seconds $(get_elapsed_seconds $label $label_paused))"
   fi
   return 0;
+
+remove_label() {
+  local label=$1
+  local label_paused="${label}_PAUSED"
+  remove_key $label
+  remove_key $label_paused
+  return 0
+}
+
+remove_all_labels() {
+  echo "" > "$ENV_FILE"
+  return 0
 }
 
