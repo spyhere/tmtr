@@ -37,7 +37,10 @@ remove_key() {
 }
 
 label_exist() {
-  local label=$1
-  echo grep -q "^$label=" "$ENV_FILE"
+  if grep -q "^$1=" "$ENV_FILE"; then
+    return 0;
+  fi
+  return 1;
+}
 }
 

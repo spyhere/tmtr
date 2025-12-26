@@ -52,7 +52,7 @@ if [[ "$#" -eq 0 ]]; then
 elif [[ "$#" -gt 2 ]]; then
   echo -e "${RED}Too much arguments! Usage: tmtr [label] [command]${NC}"
 elif [[ "$#" -eq 2 ]]; then
-  if [[ -z "$(label_exist $1)" ]]; then
+  if ! label_exist $1; then
     echo -e "${RED}Such label doesn't exist!${NC}"
   else
     if ! parse_command $2 $1; then
