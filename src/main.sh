@@ -44,10 +44,10 @@ parse_command() {
     ls)
       list_labels
       ;;
-    rm)
+    remove|rm)
       remove_label $label
       ;;
-    rma)
+    remove_all|rma)
       remove_all_labels
       ;;
     *)
