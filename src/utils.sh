@@ -1,6 +1,6 @@
 get_elapsed_seconds() {
-  local paused_time=${TIME_TRACK_PAUSED:-$(date "+%s")}
-  local start_time=$TIME_TRACK_START
+  local start_time=$1
+  local paused_time=${!2:-$(date "+%s")}
   echo $((paused_time - start_time))
 }
 
@@ -27,6 +27,17 @@ update_value() {
   else
       echo "$key=$value" >> "$ENV_FILE"
   fi
+}
 
+remove_key() {
+  local key=$1
+  if grep -q "^$key=" "$ENV_FILE"; then
+      perl -pi -e "s/^$key=.*//" "$ENV_FILE"
+  fi
+}
+
+label_exist() {
+  local label=$1
+  echo grep -q "^$label=" "$ENV_FILE"
 }
 

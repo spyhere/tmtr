@@ -19,33 +19,49 @@ if [[ $COLORS == true ]]; then
   NC='\033[0m' # No Color (reset)
 fi
 
-# TODO: Make it support labels (Ex.: tmtr ls, tmtr ir990 start)
+parse_command() {
+  local command=$1
+  local label=${2-TIME_TRACK_START}
+  case "$command" in
+    stop|s)
+      stop_command $label
+      ;;
+    restart|rst)
+      restart_command $label
+      ;;
+    pause|p)
+      pause_command $label
+      ;;
+    resume|r)
+      resume_command $label
+      ;;
+    status|stat)
+      status_command $label
+      ;;
+    log|l)
+      log_command $label
+      ;;
+    *)
+      return 1
+      ;;
+  esac
+}
 
 if [[ "$#" -eq 0 ]]; then
-  init_command
+  init_command TIME_TRACK_START
+elif [[ "$#" -gt 2 ]]; then
+  echo -e "${RED}Too much arguments! Usage: tmtr [label] [command]${NC}"
+elif [[ "$#" -eq 2 ]]; then
+  if [[ -z "$(label_exist $1)" ]]; then
+    echo -e "${RED}Such label doesn't exist!${NC}"
+  else
+    if ! parse_command $2 $1; then
+      echo -e "${RED} unknown command $2${NC}"
+    fi
+  fi
+else
+  if ! parse_command $1; then
+    init_command $1
+  fi
 fi
-
-case "$1" in
-  stop|s)
-    stop_command
-    ;;
-  restart|rst)
-    restart_command
-    ;;
-  pause|p)
-    pause_command
-    ;;
-  resume|r)
-    resume_command
-    ;;
-  status|stat)
-    status_command
-    ;;
-  log|l)
-    log_command
-    ;;
-  *)
-    echo -e "${RED} unknown command $1${NC}"
-    ;;
-esac
 
