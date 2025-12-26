@@ -79,7 +79,8 @@ log_command() {
   if [[ "${label:-0}" -gt 0 ]]; then
     echo "$(format_time_from_seconds $(get_elapsed_seconds $label $label_paused))"
   fi
-  return 0;
+  return 0
+}
 
 remove_label() {
   local label=$1
