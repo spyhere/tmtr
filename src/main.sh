@@ -21,7 +21,7 @@ fi
 
 parse_command() {
   local command=$1
-  local label=${2-TIME_TRACK_START}
+  local label=${2-default}
   case "$command" in
     stop|s)
       stop_command $label
@@ -57,7 +57,7 @@ parse_command() {
 }
 
 if [[ "$#" -eq 0 ]]; then
-  init_command TIME_TRACK_START
+  init_command default
 elif [[ "$#" -gt 2 ]]; then
   echo -e "${RED}Too much arguments! Usage: tmtr [label] [command]${NC}"
 elif [[ "$#" -eq 2 ]]; then
