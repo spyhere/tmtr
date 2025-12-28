@@ -59,13 +59,13 @@ parse_command() {
 if [[ "$#" -eq 0 ]]; then
   init_command default
 elif [[ "$#" -gt 2 ]]; then
-  echo -e "${RED}Too much arguments! Usage: tmtr [label] [command]${NC}"
+  echo -e "${RED}Too many arguments! Usage: tmtr [label] [command]${NC}"
 elif [[ "$#" -eq 2 ]]; then
   if ! label_exist $1; then
     echo -e "${RED}Such label doesn't exist!${NC}"
   else
     if ! parse_command $2 $1; then
-      echo -e "${RED} unknown command $2${NC}"
+      echo -e "${RED}Unknown command $2${NC}"
     fi
   fi
 else
