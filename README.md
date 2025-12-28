@@ -7,6 +7,7 @@
 `tmtr [label] [command]`
 
 If you need only 1 time tracker then you can omit `[label]`, but if you have multiple activities that you want to track you have to use labels for that.
+You can use underscore for complex labels: `foo_bar_baz` - just don't put `_PAUSED` at the end since this is reserved ending that is used by the program.
 
 **Commands:**
 ```bash
