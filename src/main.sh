@@ -70,7 +70,11 @@ elif [[ "$#" -eq 2 ]]; then
   fi
 else
   if ! parse_command $1; then
-    init_command $1
+    if [[ "$1" == *_PAUSED ]]; then
+      echo -e "${RED}You cannot end your label with '_PAUSED' since this is reserved ending!"
+    else 
+      init_command $1
+    fi
   fi
 fi
 
