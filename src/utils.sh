@@ -47,7 +47,9 @@ label_exist() {
 list_labels() {
   while IFS= read -r label; do
     echo "${label} $(status_command $label)"
-  done < <(perl -ne 'print "$1\n" if /(^[a-zA-Z]+)=/' "$ENV_FILE")
+  done < <(perl -ne 'print "$1\n" if /^(?!.*_PAUSED=)(\w+)=/' "$ENV_FILE")
+  # matches: "foo=", "foo_bar=", "foo_bar_baz_="
+  # no match: "foo_PAUSED=", "foo_bar_PAUSED=", "foo_bar_baz__PAUSED="
   return 0
 }
 
