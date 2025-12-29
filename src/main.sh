@@ -72,6 +72,8 @@ else
   if ! parse_command $1; then
     if [[ "$1" == *_PAUSED ]]; then
       echo -e "${RED}You cannot end your label with '_PAUSED' since this is reserved ending!"
+    elif [[ "$1" == *-* ]]; then
+      echo -e "${RED}Currently '-' is not supported in label names!"
     else 
       init_command $1
     fi
