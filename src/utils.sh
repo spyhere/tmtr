@@ -32,7 +32,7 @@ update_value() {
 remove_key() {
   local key=$1
   if grep -q "^$key=" "$ENV_FILE"; then
-      perl -pi -e "s/^$key=.*//" "$ENV_FILE"
+      perl -ni -e "print unless /^${key}=/" "$ENV_FILE"
   fi
   return 0
 }
