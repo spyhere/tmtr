@@ -1,6 +1,5 @@
 #!/bin/sh
 
-set -e
 touch .env
 
 read -n 1 -r -p "Do you want colors in outputs? y/n" ANSWER
@@ -14,6 +13,8 @@ fi
 REPO_DIR=$(cd $(dirname "${BASH_SOURCE[0]}") && pwd)
 ORIGINAL_SCRIPT="$REPO_DIR/src/main.sh"
 WRAPPER_LINKED="$HOME/.local/bin/tmtr"
+
+mkdir -p "$HOME/.local/bin"
 
 cat > $WRAPPER_LINKED << EOF
 #!/bin/sh
