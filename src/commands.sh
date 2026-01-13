@@ -4,11 +4,11 @@ init_command() {
   local label=$1
   local label_paused="${label}_PAUSED"
   if [[ "${label:-0}" -gt 0 ]]; then
-    echo -e "${RED}Error: Timetrack is already tracking! Use 'restart' to restart it.${CYAN} $(format_time_from_seconds $(get_elapsed_seconds $label $label_paused))${NC}"
+    echo -e "${RED}Error: '$label' is already tracking! Use 'restart' to restart it.${CYAN} $(format_time_from_seconds $(get_elapsed_seconds $label $label_paused))${NC}"
     exit 1
   fi
   update_value $label $NOW
-  echo -e "${GREEN}Timetrack started${NC}"
+  echo -e "${GREEN}'$label' started${NC}"
   exit 0
 }
 
