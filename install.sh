@@ -29,3 +29,16 @@ chmod +x "$WRAPPER_LINKED"
 echo "Successfuly created wrapper for tmtr at $WRAPPER_LINKED"
 echo "It points to $ORIGINAL_SCRIPT"
 
+# Add PATH ~/.local/bin to .zshrc if it is not there already
+BIN_DIR="$HOME/.local/bin"
+case ":$PATH:" in
+  *":$BIN_DIR:"*) ;;
+  *)
+    cat >> "$HOME/.zshrc" << EOF
+      # Now scripts from ~/.local/bin are accessible
+      export PATH="\$HOME/.local/bin:\$PATH"
+    EOF
+    echo "Added ~/.local/bin to PATH. Restart your shell or run: source ~/.zshrc"
+    ;;
+esac
+
