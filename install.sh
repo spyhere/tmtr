@@ -16,13 +16,12 @@ WRAPPER_LINKED="$HOME/.local/bin/tmtr"
 
 mkdir -p "$HOME/.local/bin"
 
-cat > $WRAPPER_LINKED << EOF
+# Create a wrapper script
+cat > "$WRAPPER_LINKED" << EOF
 #!/bin/sh
-ENV="$REPO_DIR"
-export ENV
-COLORS="$COLORS"
-export COLORS
-bash "$ORIGINAL_SCRIPT" "\$@"
+export ENV="$REPO_DIR"
+export COLORS="$COLORS"
+exec bash "$ORIGINAL_SCRIPT" "\$@"
 EOF
 
 chmod +x "$WRAPPER_LINKED"
