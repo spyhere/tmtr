@@ -10,6 +10,8 @@ If you need only 1 time tracker then you can omit `[label]`, but if you have mul
 You can use underscore for complex labels: `foo_bar_baz` - just don't put `_PAUSED` at the end since this is reserved ending that is used by the program.
 
 **Commands:**
+
+Supports autocompletion or suggestions with `Tab`
 ```bash
 tmtr
 # Run without arguments to start tracking. Will show error with current tracked time if it's already tracking
