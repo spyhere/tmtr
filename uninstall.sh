@@ -26,4 +26,14 @@ else
   echo "Aborting."
 fi
 
+# Remove completions from .zshrc
+perl -0777 -i.bak -pe '
+  s{
+    \n?
+    \#\ >>>\ tmtr\ completions\ >>>.*?
+    \#\ <<<\ tmtr\ completions\ <<<
+    \n?
+  }{}gsx
+' "$HOME/.zshrc"
+
 

@@ -38,3 +38,15 @@ export PATH="\$HOME/.local/bin:\$PATH"
 EOF
   echo "Added ~/.local/bin to PATH. Restart your shell or run: source ~/.zshrc"
 fi
+
+# Completions
+COMPLETIONS="$REPO_DIR/src/completions.zsh.inc"
+grep -q "tmtr completions" "$HOME/.zshrc" || cat >> "$HOME/.zshrc" << EOF
+# >>> tmtr completions >>>
+if [ -f "$COMPLETIONS" ]; then . "$COMPLETIONS"; fi
+# <<< tmtr completions <<<
+EOF
+perl -i -pe 's{\@ENV\@}{'"$REPO_DIR"'}g' src/completions.zsh.inc
+echo "Added completions to .zshrc"
+echo "You should restart your terminal to make it work"
+
