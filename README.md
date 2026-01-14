@@ -52,13 +52,13 @@ tmtr rma
 
 ```bash
 spyhere % tmtr
-Timetrack started
+'default' started
 
 spyhere % tmtr stat
 ▶ 1m 6s
 
 spyhere % tmtr test
-Timetrack started
+'test' started
 
 spyhere % tmtr test p
 ⏸ 46s
