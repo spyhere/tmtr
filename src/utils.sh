@@ -44,12 +44,53 @@ label_exist() {
   return 1;
 }
 
+get_labels() {
+  # matches: "foo=", "foo_bar=", "foo_bar_baz_="
+  # no match: "foo_PAUSED=", "foo_bar_PAUSED=", "foo_bar_baz__PAUSED="
+  perl -ne 'print "$1\n" if /^(?!.*_PAUSED=)(\w+|-)=/' "$ENV_FILE"
+}
+
 list_labels() {
   while IFS= read -r label; do
     echo "${label} $(status_command $label)"
-  done < <(perl -ne 'print "$1\n" if /^(?!.*_PAUSED=)(\w+)=/' "$ENV_FILE")
-  # matches: "foo=", "foo_bar=", "foo_bar_baz_="
-  # no match: "foo_PAUSED=", "foo_bar_PAUSED=", "foo_bar_baz__PAUSED="
+  done < <(get_labels)
   return 0
+}
+
+parse_command() {
+  local command=$1
+  local label=${2-default}
+  case "$command" in
+    stop|s)
+      stop_command $label
+      ;;
+    restart|rst)
+      restart_command $label
+      ;;
+    pause|p)
+      pause_command $label
+      ;;
+    resume|r)
+      resume_command $label
+      ;;
+    status|stat)
+      status_command $label
+      ;;
+    log|l)
+      log_command $label
+      ;;
+    ls)
+      list_labels
+      ;;
+    remove|rm)
+      remove_label $label
+      ;;
+    remove_all|rma)
+      remove_all_labels
+      ;;
+    *)
+      return 1
+      ;;
+  esac
 }
 
